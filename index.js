@@ -9,13 +9,14 @@ app.use(express.static('public'));
 
 app.get('/', (request, response) => {
     //response.send('Testando!!!');
-    response.render('home', {nome : "miguel"});
+    response.render('home', {nome : "miguel"});  
 });
 
-app.get ('/tabuada', (request, response) => {
+app.get ('/tabuada/:numero', (request, response) => {
     let resultado = []
+    const numero = request.params['numero']
     for(let cont = 1;cont <= 10;cont++){
-        resultado.push(cont *5)
+        resultado.push(cont * numero)
     }
     response.render('tabuada',{valores : resultado})
 })
